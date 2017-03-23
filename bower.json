@@ -1,0 +1,13 @@
+{
+  "name": "mia-authentication-angular",
+  "version": "0.1.0",
+  "main": "src/angular-mia-authentication.js",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt"
+  ],
+  "dependencies": {
+    "angular-local-storage": "^0.5.2"
+  },
+  "devDependencies": {}
+}
