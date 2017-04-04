@@ -9,7 +9,7 @@
 
     function mobileiaAuthProvider() {
         var apiId = null;
-        var currentUser = {firstname: 'Anoninomo'};
+        var currentUser = null;
         var baseUrl = 'http://auth.mobileia.com/';
         
         this.init = function(api_key){
@@ -27,6 +27,7 @@
             var service = {
                 currentUser: currentUser,
                 isLogged: isLogged,
+                getAccessToken: getAccessToken,
                 onAuthStateChanged: onAuthStateChanged,
                 createUser: createUser,
                 signInWithEmailAndPassword: signInWithEmailAndPassword,
@@ -62,6 +63,10 @@
                 }
                 
                 return false;
+            };
+            
+            function getAccessToken(){
+                return localStorageService.get('access_token');
             };
 
             function onAuthStateChanged(){return apiId;};
