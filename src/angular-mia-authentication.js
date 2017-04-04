@@ -97,7 +97,7 @@
                     // Guardar access_token y userId
                     localStorageService.set('access_token', response.data.access_token);
                     localStorageService.set('refresh_token', response.data.refresh_token);
-                    localStorageService.set('access_token', response.data.user_id);
+                    localStorageService.set('user_id', response.data.user_id);
                     
                 }, function error(response){
                     console.log('error');
