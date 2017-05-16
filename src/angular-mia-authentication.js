@@ -98,7 +98,8 @@
                     localStorageService.set('access_token', response.data.access_token);
                     localStorageService.set('refresh_token', response.data.refresh_token);
                     localStorageService.set('user_id', response.data.user_id);
-                    
+                    // Llamar al callback
+                    params.callback();
                 }, function error(response){
                     console.log('error');
                     console.log(response);
