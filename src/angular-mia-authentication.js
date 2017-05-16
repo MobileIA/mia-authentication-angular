@@ -107,7 +107,12 @@
 
             function sendPasswordResetEmail(){};
 
-            function signOut(){};
+            function signOut(){
+                // Eliminamos AccessToken
+                localStorageService.remove('access_token');
+                // Elimimanamos todo
+                localStorageService.clearAll();
+            };
         }
     }
 })();
