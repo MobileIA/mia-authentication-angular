@@ -71,7 +71,29 @@
 
             function onAuthStateChanged(){return apiId;};
 
-            function createUser(){};
+            function createUser(params){
+                // Verificar si ya existe una sesion
+                if(isLogged()){
+                    console.log('Ya hay una sesion iniciada');
+                    return false;
+                }
+                
+                $http.post(baseUrl + 'user/create', {
+                    app_id: parseInt(apiId),
+                    email: params.email,
+                    password: params.password,
+                    firstname: params.firstname,
+                    platform: 2
+                }).then(function success(response){
+                    console.log('success');
+                    console.log(response.data);
+                    // Llamar al callback
+                    params.callback(true);
+                }, function error(response){
+                    console.log('error');
+                    console.log(response);
+                });
+            };
 
             function signInWithEmailAndPassword(params){
                 // Verificar si ya existe una sesion
