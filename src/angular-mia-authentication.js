@@ -107,24 +107,21 @@
                     app_id: parseInt(apiId),
                     email: params.email,
                     password: params.password
-                }/*, {
-                    headers: {
-                        'Access-Control-Allow-Origin': '*',
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    }
-                }*/).then(function success(response){
-                    console.log('success');
-                    console.log(response.data);
+                }).then(function success(response){
                     // Guardar access_token y userId
                     localStorageService.set('access_token', response.data.access_token);
                     localStorageService.set('refresh_token', response.data.refresh_token);
                     localStorageService.set('user_id', response.data.user_id);
                     // Llamar al callback
-                    params.callback();
+                    params.callback(true);
                 }, function error(response){
-                    console.log('error');
-                    console.log(response);
+                    // Validar si la respuesta fue correcta
+                    if(response.data.status){
+                        params.callback(false, { code: response.data.status, message: response.data.detail, title: response.data.title });
+                        return false;
+                    }
+                    // Mandar error general
+                    params.callback(false, { code: -1, message: "Error inesperado" });
                 });
             };
 
