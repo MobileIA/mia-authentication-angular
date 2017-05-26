@@ -85,13 +85,16 @@
                     firstname: params.firstname,
                     platform: 2
                 }).then(function success(response){
-                    console.log('success');
-                    console.log(response.data);
                     // Llamar al callback
                     params.callback(true);
                 }, function error(response){
-                    console.log('error');
-                    console.log(response);
+                    // Validar si la respuesta fue correcta
+                    if(response.data.status){
+                        params.callback(false, { code: response.data.status, message: response.data.detail, title: response.data.title });
+                        return false;
+                    }
+                    // Mandar error general
+                    params.callback(false, { code: -1, message: "Error inesperado" });
                 });
             };
 
