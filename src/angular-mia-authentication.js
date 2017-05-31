@@ -27,6 +27,7 @@
             var service = {
                 currentUser: currentUser,
                 isLogged: isLogged,
+                getAppId: getAppId,
                 getAccessToken: getAccessToken,
                 onAuthStateChanged: onAuthStateChanged,
                 createUser: createUser,
@@ -63,6 +64,10 @@
                 }
                 
                 return false;
+            };
+            
+            function getAppId(){
+                return apiId;
             };
             
             function getAccessToken(){
