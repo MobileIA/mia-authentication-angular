@@ -31,6 +31,7 @@
                 getAccessToken: getAccessToken,
                 onAuthStateChanged: onAuthStateChanged,
                 createUser: createUser,
+                updateUser: updateUser, 
                 signInWithEmailAndPassword: signInWithEmailAndPassword,
                 sendPasswordResetEmail: sendPasswordResetEmail,
                 signOut: signOut
@@ -88,6 +89,7 @@
                     email: params.email,
                     password: params.password,
                     firstname: params.firstname,
+                    lastname: params.lastname,
                     platform: 2
                 }).then(function success(response){
                     // Llamar al callback
@@ -101,6 +103,27 @@
                     // Mandar error general
                     params.callback(false, { code: -1, message: "Error inesperado" });
                 });
+            };
+            
+            function updateUser(params){
+                var access_token = localStorageService.get('access_token');
+                if(access_token){
+                    $http.post(baseUrl + 'edit', {
+                        app_id: parseInt(apiId),
+                        access_token: access_token,
+                        email: params.email,
+                        firstname: params.firstname,
+                        lastname: params.lastname,
+                        photo: params.photo,
+                        phone: params.phone
+                    }).then(function success(response){
+                        // Llamar al callback
+                        params.callback(true);
+                    }, function error(response){
+                        console.log('error');
+                        console.log(response);
+                    });
+                }
             };
 
             function signInWithEmailAndPassword(params){
