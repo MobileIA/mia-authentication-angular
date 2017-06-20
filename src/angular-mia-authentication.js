@@ -28,6 +28,7 @@
                 currentUser: currentUser,
                 isLogged: isLogged,
                 getAppId: getAppId,
+                getUserId: getUserId,
                 getAccessToken: getAccessToken,
                 onAuthStateChanged: onAuthStateChanged,
                 createUser: createUser,
@@ -69,6 +70,10 @@
             
             function getAppId(){
                 return apiId;
+            };
+            
+            function getUserId(){
+                return localStorageService.get('user_id');
             };
             
             function getAccessToken(){
