@@ -49,7 +49,6 @@
                     }).then(function success(response){
                         currentUser = response.data;
                         $rootScope.currentUser = currentUser;
-                        console.log(currentUser);
                     }, function error(response){
                         console.log('error');
                         console.log(response);
