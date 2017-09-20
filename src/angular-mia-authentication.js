@@ -47,7 +47,11 @@
                         app_id: parseInt(apiId),
                         access_token: access_token
                     }).then(function success(response){
-                        currentUser = response.data;
+                        // Verificamos si la respuesta es correcta
+                        if(!response.data.success){
+                            return false;
+                        }
+                        currentUser = response.data.response;
                         $rootScope.currentUser = currentUser;
                     }, function error(response){
                         console.log('error');
