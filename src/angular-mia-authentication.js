@@ -148,12 +148,14 @@
                     password: params.password
                 }).then(function success(response){
                     if(!response.data.success){
-                        return callback(false, response.data.response);
+                        return params.callback(false, response.data.error);
                     }
                     // Guardar access_token y userId
                     localStorageService.set('access_token', response.data.response.access_token);
                     //localStorageService.set('refresh_token', response.data.refresh_token);
                     localStorageService.set('user_id', response.data.response.user_id);
+                    // Obtener datos del usuario
+                    loadUserIfExist();
                     // Llamar al callback
                     params.callback(true);
                 }, function error(response){
