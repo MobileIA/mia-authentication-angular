@@ -10,7 +10,7 @@
     function mobileiaAuthProvider() {
         var apiId = null;
         var currentUser = null;
-        var baseUrl = 'http://authentication.mobileia.com/api';
+        var baseUrl = 'http://authentication.mobileia.com/api/';
         
         this.init = function(api_key){
             apiId = api_key;
