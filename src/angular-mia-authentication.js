@@ -138,15 +138,18 @@
                 }
                 
                 $http.post(baseUrl + 'oauth', {
-                    grant_type: "password",
+                    grant_type: "normal",
                     app_id: parseInt(apiId),
                     email: params.email,
                     password: params.password
                 }).then(function success(response){
+                    if(!response.data.success){
+                        return callback(false, response.data.response);
+                    }
                     // Guardar access_token y userId
-                    localStorageService.set('access_token', response.data.access_token);
-                    localStorageService.set('refresh_token', response.data.refresh_token);
-                    localStorageService.set('user_id', response.data.user_id);
+                    localStorageService.set('access_token', response.data.response.access_token);
+                    //localStorageService.set('refresh_token', response.data.refresh_token);
+                    localStorageService.set('user_id', response.data.response.user_id);
                     // Llamar al callback
                     params.callback(true);
                 }, function error(response){
