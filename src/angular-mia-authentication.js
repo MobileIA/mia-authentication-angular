@@ -10,7 +10,7 @@
     function mobileiaAuthProvider() {
         var apiId = null;
         var currentUser = null;
-        var baseUrl = 'http://authentication.mobileia.com/';
+        var baseUrl = 'http://authentication.mobileia.com/api';
         
         this.init = function(api_key){
             apiId = api_key;
@@ -88,7 +88,7 @@
                     return false;
                 }
                 
-                $http.post(baseUrl + 'user/create', {
+                $http.post(baseUrl + 'register', {
                     app_id: parseInt(apiId),
                     email: params.email,
                     password: params.password,
@@ -112,7 +112,7 @@
             function updateUser(params){
                 var access_token = localStorageService.get('access_token');
                 if(access_token){
-                    $http.post(baseUrl + 'edit', {
+                    $http.post(baseUrl + 'update', {
                         app_id: parseInt(apiId),
                         access_token: access_token,
                         email: params.email,
