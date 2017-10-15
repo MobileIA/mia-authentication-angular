@@ -42,7 +42,7 @@
 
             function loadUserIfExist(){
                 var access_token = localStorageService.get('access_token');
-                if(access_token){
+                if(access_token && access_token.length > 0){
                     $http.post(baseUrl + 'me', {
                         app_id: parseInt(apiId),
                         access_token: access_token
@@ -174,6 +174,7 @@
             function signOut(){
                 // Eliminamos AccessToken
                 localStorageService.remove('access_token');
+                localStorageService.remove('user_id');
                 // Elimimanamos todo
                 localStorageService.clearAll();
             };

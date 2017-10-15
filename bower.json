@@ -1,6 +1,6 @@
 {
   "name": "mia-authentication-angular",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "main": "src/angular-mia-authentication.js",
   "ignore": [
     ".jshintrc",
