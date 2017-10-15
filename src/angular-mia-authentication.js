@@ -64,7 +64,7 @@
                 // Obtener Access token guardado
                 var access_token = localStorageService.get('access_token');
                 // Si existe una sesion enviar un alerta
-                if(access_token){
+                if(access_token && access_token.length > 0){
                     return true;
                 }
                 
