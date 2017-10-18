@@ -49,6 +49,10 @@
                     }).then(function success(response){
                         // Verificamos si la respuesta es correcta
                         if(!response.data.success){
+                            // Cerramos sesión
+                            signOut();
+                            // Refrescamos la pagina
+                            location.reload();
                             return false;
                         }
                         currentUser = response.data.response;
