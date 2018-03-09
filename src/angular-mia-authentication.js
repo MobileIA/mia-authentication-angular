@@ -98,6 +98,7 @@
                 
                 $http.post(baseUrl + 'register', {
                     app_id: parseInt(apiId),
+                    register_type: "normal",
                     email: params.email,
                     password: params.password,
                     firstname: params.firstname,
